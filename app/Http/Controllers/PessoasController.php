@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pessoa;
 use App\Telefone;
+use Validator;
 use Illuminate\Http\Request;
 
 class PessoasController extends Controller
@@ -44,6 +45,16 @@ class PessoasController extends Controller
     //CRUD
         
     public function create(Request $request){
+
+        $validacao = $this->validacao($request->all());
+
+        if($validacao->fails()){
+            return redirect()
+                    ->back()
+                    ->withErrors($validacao->errors())
+                    ->withInput($request->all());
+        }
+
         $pessoa = Pessoa::create($request->all());
         if($request->ddd && $request->fone){
             $telefone = new Telefone();
@@ -65,5 +76,25 @@ class PessoasController extends Controller
         $pessoa = $this->pessoa->find($request->id);
         $pessoa->delete($request->all());
         return redirect('/pessoas')->with("success", "Excluído com sucesso!");
+    }
+
+    private function validacao($data){
+        $regras = [
+            'nome' => 'required|min:3'
+        ];
+
+        $mensagens = [
+            'nome.required' => 'O nome do contato é obrigatório',
+            'nome.min' => 'O nome do contato deve ter no mínimo 3 caracteres',
+        ];
+
+        if(array_key_exists('ddd', $data) || array_key_exists('fone', $data)){
+            $regras['ddd'] = 'required|size:2';
+            $regras['fone'] = 'required|size:9';
+            $mensagens['ddd.required'] = 'O DDD do número é obrigatório';
+            $mensagens['fone.required'] = 'O número do contato é obrigatório';
+        }
+
+        return Validator::make($data, $regras, $mensagens);
     }
 }
