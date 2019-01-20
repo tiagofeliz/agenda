@@ -16,4 +16,8 @@ class Pessoa extends Model
     public function telefone(){
         return $this->hasMany(Telefone::class, 'pessoa_id');
     }
+
+    public static function getByFirstLetter($letter){
+        return static::where('nome', 'LIKE', $letter.'%')->get();
+    }
 }

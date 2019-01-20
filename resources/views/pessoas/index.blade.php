@@ -2,6 +2,18 @@
 
 @section('content')
     <div class="container">
+        <div class="container">
+            @foreach (range('A', 'Z') as $letra)
+                <div class="btn-group">
+                    <a href="{{ url("/pessoas/$letra") }}" class="btn btn-primary {{ $letra == $criterio ? 'disabled' : '' }}">{{ $letra }}</a>
+                </div>
+            @endforeach
+        </div>
+
+        @if($criterio)
+            <h4>Critério de pesquisa: {{ $criterio }}</h4>
+        @endif
+
         <div class="row">
             @foreach($pessoas as $pessoa)
                 <div class="col-sm-6">

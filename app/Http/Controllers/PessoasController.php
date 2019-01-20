@@ -19,10 +19,11 @@ class PessoasController extends Controller
         $this->pessoa = new Pessoa();
     }
 
-    public function index(){
-        $list_pessoas = Pessoa::all();
+    public function index($letra = null){
+        $list_pessoas = Pessoa::getByFirstLetter($letra);
         return view('pessoas.index', [
-            'pessoas' => $list_pessoas
+            'pessoas' => $list_pessoas,
+            'criterio' => $letra
         ]);
     }
 
