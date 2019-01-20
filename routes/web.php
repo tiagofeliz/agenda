@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (){
+    return view('template.app');
+});
+
+Route::group(['prefix' => 'pessoas'], function(){
+    Route::get('/', 'PessoasController@index');
+    Route::get('/create', 'PessoasController@create');
+    Route::post('/new', 'PessoasController@new');
 });
