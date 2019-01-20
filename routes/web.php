@@ -21,4 +21,6 @@ Route::group(['prefix' => 'pessoas'], function(){
     Route::post('/create', 'PessoasController@create');
     Route::get('/edit/{id}', 'PessoasController@edit');
     Route::post('/update', 'PessoasController@update');
+    Route::get('/remove/{id}', 'PessoasController@remove');
+    Route::post('/delete', 'PessoasController@delete');
 });

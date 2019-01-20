@@ -30,7 +30,13 @@ class PessoasController extends Controller
     }
 
     public function edit($id){
-        return view('pessoas.edit', [
+        return view('pessoas.update', [
+            'pessoa' => $this->pessoa->find($id)
+        ]);
+    }
+
+    public function remove($id){
+        return view('pessoas.delete', [
             'pessoa' => $this->pessoa->find($id)
         ]);
     }
@@ -52,6 +58,12 @@ class PessoasController extends Controller
     public function update(Request $request){
         $pessoa = $this->pessoa->find($request->id);
         $pessoa->update($request->all());
-        return redirect('/pessoas');
+        return redirect('/pessoas')->with("success", "Atualizado com sucesso!");
+    }
+
+    public function delete(Request $request){
+        $pessoa = $this->pessoa->find($request->id);
+        $pessoa->delete($request->all());
+        return redirect('/pessoas')->with("success", "Excluído com sucesso!");
     }
 }

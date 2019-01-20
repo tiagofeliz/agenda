@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             @foreach($pessoas as $pessoa)
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="card">
                         <h5 class="card-header">{{$pessoa->nome}}</h5>
                         <div class="card-body">
@@ -17,6 +17,7 @@
                             @endforeach
                             <a href="#" class="btn btn-primary">Add telefone</a>
                             <a href="{{ url("/pessoas/edit/$pessoa->id") }}" class="btn btn-default">Editar contato</a>
+                            <a href="{{ url("/pessoas/remove/$pessoa->id") }}" class="btn btn-default">Deletar</a>
                         </div>
                     </div>
                 </div>
