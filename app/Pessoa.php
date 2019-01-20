@@ -20,4 +20,8 @@ class Pessoa extends Model
     public static function getByFirstLetter($letter){
         return static::where('nome', 'LIKE', $letter.'%')->get();
     }
+
+    public static function getByName($nome){
+        return static::where('nome', 'LIKE', '%'.$nome.'%')->get();
+    }
 }

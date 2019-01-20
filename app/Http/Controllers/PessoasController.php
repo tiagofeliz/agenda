@@ -27,6 +27,14 @@ class PessoasController extends Controller
         ]);
     }
 
+    public function filter (Request $request){
+        $list_pessoas = Pessoa::getByName($request->nome);
+        return view('pessoas.index', [
+            'pessoas' => $list_pessoas,
+            'criterio' => $request->nome
+        ]);
+    }
+
     public function new(){
         return view('pessoas.create');
     }

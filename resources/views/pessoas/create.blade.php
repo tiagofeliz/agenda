@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group col-sm-2">
                                 <label for="ddd" class="control-label">DDD: </label>
-                                <input name="ddd" id="ddd" class="form-control" value="{{ old('nome') }}"/>
+                                <input name="ddd" id="ddd" class="form-control" value="{{ old('ddd') }}"/>
                                 @if($errors->has('ddd'))
                                     <span class="help-block">
                                         {{ $errors->first('ddd') }}
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="fone" class="control-label">Número: </label>
-                                <input name="fone" id="fone" class="form-control" value="{{ old('nome') }}"/>
+                                <input name="fone" id="fone" class="form-control" value="{{ old('fone') }}"/>
                                 @if($errors->has('fone'))
                                     <span class="help-block">
                                         {{ $errors->first('fone') }}

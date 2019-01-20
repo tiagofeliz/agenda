@@ -10,9 +10,30 @@
             @endforeach
         </div>
 
-        @if($criterio)
-            <h4>Critério de pesquisa: {{ $criterio }}</h4>
-        @endif
+        <div class="row" style="margin: 12px;">
+            <div class="col-sm-6">
+                @if($criterio)
+                <h4>Critério de pesquisa: {{ $criterio }}</h4>
+                @endif
+            </div>
+            <div class="col-sm-6">
+                <form action="{{ url('/pessoas/filter') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input name="nome" id="nome" class="form-control" placeholder="Nome do contato"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             @foreach($pessoas as $pessoa)
