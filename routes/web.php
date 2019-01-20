@@ -17,6 +17,8 @@ Route::get('/', function (){
 
 Route::group(['prefix' => 'pessoas'], function(){
     Route::get('/', 'PessoasController@index');
-    Route::get('/create', 'PessoasController@create');
-    Route::post('/new', 'PessoasController@new');
+    Route::get('/new', 'PessoasController@new');
+    Route::post('/create', 'PessoasController@create');
+    Route::get('/edit/{id}', 'PessoasController@edit');
+    Route::post('/update', 'PessoasController@update');
 });

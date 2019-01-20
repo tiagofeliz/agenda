@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class PessoasController extends Controller
 {
+    //Controllers
     private $telefones_controller;
+    //Models
+    private $pessoa;
 
     public function __construct(TelefonesController $telefones_controller){
         $this->telefones_controller = $telefones_controller;
+        $this->pessoa = new Pessoa();
     }
 
     public function index(){
@@ -21,11 +25,19 @@ class PessoasController extends Controller
         ]);
     }
 
-    public function create(){
+    public function new(){
         return view('pessoas.create');
     }
 
-    public function new(Request $request){
+    public function edit($id){
+        return view('pessoas.edit', [
+            'pessoa' => $this->pessoa->find($id)
+        ]);
+    }
+
+    //CRUD
+        
+    public function create(Request $request){
         $pessoa = Pessoa::create($request->all());
         if($request->ddd && $request->fone){
             $telefone = new Telefone();
@@ -35,5 +47,11 @@ class PessoasController extends Controller
             $this->telefones_controller->new($telefone);
         }
         return redirect('/pessoas')->with("message", "Contato cadastrado com sucesso.");
+    }
+
+    public function update(Request $request){
+        $pessoa = $this->pessoa->find($request->id);
+        $pessoa->update($request->all());
+        return redirect('/pessoas');
     }
 }

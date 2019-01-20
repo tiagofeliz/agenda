@@ -16,7 +16,7 @@
                                 </p>
                             @endforeach
                             <a href="#" class="btn btn-primary">Add telefone</a>
-                            <a href="#" class="btn btn-default">Editar contato</a>
+                            <a href="{{ url("/pessoas/edit/$pessoa->id") }}" class="btn btn-default">Editar contato</a>
                         </div>
                     </div>
                 </div>

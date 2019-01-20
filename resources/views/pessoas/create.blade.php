@@ -13,7 +13,7 @@
             
             <div class="card-body">
                 <div class="row">
-                    <form action="{{ url('/pessoas/new') }}" method="POST">
+                    <form action="{{ url('/pessoas/create') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="form-group col-sm-6">
